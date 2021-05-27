@@ -42,5 +42,17 @@
     "leasot": "^11.5.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.2"
+  },
+  "dependencies": {
+    "@local/json-schema": "file:../json-schema",
+    "@silver886/json-schema": "^1.0.1",
+    "@types/mongodb": "^3.6.12",
+    "@types/mongoose": "^5.10.5",
+    "aws-sdk": "2.904.0",
+    "axios": "^0.21.1",
+    "mongodb": "^3.6.6",
+    "mongodb-client-encryption": "^1.2.3",
+    "mongoose": "^5.12.8",
+    "saslprep": "git+https://github.com/reklatsmasters/saslprep.git"
   }
 }
