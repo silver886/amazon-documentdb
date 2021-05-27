@@ -1,6 +1,6 @@
 {
   "name": "@silver886/amazon-documentdb",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Helpers for Amazon DocumentDB",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
