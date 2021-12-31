@@ -31,6 +31,30 @@ export class SecretsManager {
         this.secretId = secretId;
     }
 
+    public get mongodbClient(): mongodb.MongoClient {
+        return this.arn.client;
+    }
+
+    public get localMongodbClient(): mongodb.MongoClient {
+        return this.local.client;
+    }
+
+    public get mongooseClient(): mongoose.Mongoose {
+        return this.arn.odmClient;
+    }
+
+    public get localMongooseClient(): mongoose.Mongoose {
+        return this.local.odmClient;
+    }
+
+    public get createMongooseConnection(): mongoose.Connection {
+        return mongoose.createConnection(this.arn.uri, this.odmOptions);
+    }
+
+    public get createLocalMongooseConnection(): mongoose.Connection {
+        return mongoose.createConnection(this.local.uri, this.odmOptions);
+    }
+
     public async init(): Promise<void> {
         const getSecretValueMasterData = await SECRETS_MANAGER_CLIENT.getSecretValue({
             /* eslint-disable @typescript-eslint/naming-convention */
@@ -86,14 +110,6 @@ export class SecretsManager {
         };
     }
 
-    public get mongodbClient(): mongodb.MongoClient {
-        return this.arn.client;
-    }
-
-    public get localMongodbClient(): mongodb.MongoClient {
-        return this.local.client;
-    }
-
     public async mongodbConnect(): Promise<void> {
         await this.arn.client.connect();
     }
@@ -102,28 +118,12 @@ export class SecretsManager {
         await this.local.client.connect();
     }
 
-    public get mongooseClient(): mongoose.Mongoose {
-        return this.arn.odmClient;
-    }
-
-    public get localMongooseClient(): mongoose.Mongoose {
-        return this.local.odmClient;
-    }
-
     public async mongooseConnect(): Promise<void> {
         await this.arn.odmClient.connect(this.arn.uri, this.odmOptions);
     }
 
     public async localMongooseConnect(): Promise<void> {
         await this.local.odmClient.connect(this.local.uri, this.odmOptions);
-    }
-
-    public get createMongooseConnection(): mongoose.Connection {
-        return mongoose.createConnection(this.arn.uri, this.odmOptions);
-    }
-
-    public get createLocalMongooseConnection(): mongoose.Connection {
-        return mongoose.createConnection(this.local.uri, this.odmOptions);
     }
 
     public async disconnect(): Promise<void> {
