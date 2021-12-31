@@ -7,12 +7,11 @@
   "scripts": {
     "comments": "leasot --ignore node_modules/** .git/** --tags NOTE OPTIMIZE TODO HACK XXX FIXME BUG --filetype .ts **",
     "lint": "eslint .",
-    "watch-pretest": "npm run pretest -- --watch",
-    "watch-test": "npm test -- --watchAll",
-    "pretest": "tsc -p ./test/tsconfig.json",
-    "test": "jest --coverage",
+    "watch-pretest": "tsc -p ./test/tsconfig.json --watch",
+    "watch-test": "jest --coverage --watchAll",
+    "test": "tsc -p ./test/tsconfig.json && jest --coverage",
     "prepack": "tsc",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "pnpm test"
   },
   "repository": {
     "type": "git",
@@ -47,7 +46,7 @@
   },
   "dependencies": {
     "@silver886/json-schema": "^1.0.2",
-    "aws-sdk": "2.904.0",
+    "aws-sdk": "^2.904.0",
     "axios": "^0.21.1",
     "mongodb": "^3.6.6",
     "mongodb-client-encryption": "^1.2.3",
